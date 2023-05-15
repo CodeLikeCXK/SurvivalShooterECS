@@ -1,16 +1,20 @@
-﻿using Unity.Entities;
-using UnityEngine;
+﻿using UnityEngine;
+using Unity.Entities;
+using Unity.Mathematics;
 
-public class EnemyObject : MonoBehaviour, IConvertGameObjectToEntity
+public class EnemyObject : MonoBehaviour
 {
-    public Entity Entity;
+    public Entity entity;
+}
 
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+public class EnemyObjectBaker : Baker<EnemyObject>
+{
+
+    public override void Bake(EnemyObject entity)
     {
         var settings = SurvivalShooterBootstrap.Settings;
-        dstManager.AddComponentData(entity, new EnemyData());
-        dstManager.AddComponentData(entity, new HealthData { Value = settings.StartingEnemyHealth });
+        AddComponent(new EnemyData());
+        AddComponent(new HealthData { Value = settings.StartingEnemyHealth });
 
-        Entity = entity;
     }
 }

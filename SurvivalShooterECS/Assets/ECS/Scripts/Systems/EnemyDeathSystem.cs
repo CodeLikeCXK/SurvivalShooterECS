@@ -22,7 +22,7 @@ public partial class EnemyDeathSystem : SystemBase
                 audio.clip = SurvivalShooterBootstrap.Settings.EnemyDeathClip;
                 audio.Play();
 
-                EntityManager.DestroyEntity(collider.gameObject.GetComponent<EnemyObject>().Entity);
+                EntityManager.DestroyEntity(collider.gameObject.GetComponent<EnemyObject>().entity);
 
                 score += scorePerDeath;
                 gameUi.OnEnemyKilled(score);

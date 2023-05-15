@@ -30,7 +30,7 @@ public partial class EnemySpawnSystem : SystemBase
         if (player == null || playerHp <= 0)
             return;
 
-        var dt = Time.DeltaTime;
+        var dt = World.Time.DeltaTime;
 
         var spawner = spawnerQuery.ToComponentArray<EnemySpawner>();
         for (var i = 0; i < spawner.Length; i++)

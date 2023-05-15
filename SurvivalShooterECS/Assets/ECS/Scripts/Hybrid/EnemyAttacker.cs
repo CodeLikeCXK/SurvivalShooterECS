@@ -25,8 +25,8 @@ public class EnemyAttacker : MonoBehaviour
                 Timer = 0f,
                 Frequency = SurvivalShooterBootstrap.Settings.TimeBetweenEnemyAttacks,
                 Damage = SurvivalShooterBootstrap.Settings.EnemyAttackDamage,
-                Source = GetComponent<EnemyObject>().Entity,
-                Target = player.GetComponent<PlayerObject>().Entity
+                Source = GetComponent<EnemyObject>().entity,
+                Target = player.GetComponent<PlayerObject>().entity
             });
         }
     }

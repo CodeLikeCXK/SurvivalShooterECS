@@ -7,13 +7,13 @@ public partial class EnemyHealthSystem : SystemBase
 
     protected override void OnCreate()
     {
-        ecbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        ecbSystem = World.GetOrCreateSystemManaged<EndSimulationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()
     {
         var ecb = ecbSystem.CreateCommandBuffer().AsParallelWriter();
-        var dead = GetComponentDataFromEntity<DeadData>();
+        var dead = GetComponentLookup<DeadData>();
 
         Entities
             .WithReadOnly(dead)

@@ -28,7 +28,7 @@ public partial class PlayerShootingSystem : SystemBase
         if (hasToExit)
             return;
 
-        timer += Time.DeltaTime;
+        timer += World.Time.DeltaTime;
 
         var timeBetweenBullets = SurvivalShooterBootstrap.Settings.TimeBetweenBullets;
         var effectsDisplayTime = SurvivalShooterBootstrap.Settings.GunEffectsDisplayTime;
@@ -74,7 +74,7 @@ public partial class PlayerShootingSystem : SystemBase
             var enemyObj = shootHit.collider.gameObject.GetComponent<EnemyObject>();
             if (enemyObj != null)
             {
-                var hitEntity = enemyObj.GetComponent<EnemyObject>().Entity;
+                var hitEntity = enemyObj.GetComponent<EnemyObject>().entity;
                 if (!EntityManager.HasComponent<DamagedData>(hitEntity))
                     EntityManager.AddComponentData(hitEntity, new DamagedData
                     {

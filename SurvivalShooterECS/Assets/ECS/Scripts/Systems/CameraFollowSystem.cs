@@ -25,7 +25,7 @@ public partial class CameraFollowSystem : SystemBase
             }
 
             var smoothing = SurvivalShooterBootstrap.Settings.CamSmoothing;
-            var dt = Time.DeltaTime;
+            var dt = World.Time.DeltaTime;
             var targetCamPos = playerPos + offset;
             mainCamera.transform.position =
                 Vector3.Lerp(mainCamera.transform.position, targetCamPos, smoothing * dt);

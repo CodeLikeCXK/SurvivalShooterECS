@@ -8,16 +8,16 @@ public partial class EnemyAttackSystem : SystemBase
 
     protected override void OnCreate()
     {
-        ecbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        ecbSystem = World.GetOrCreateSystemManaged<EndSimulationEntityCommandBufferSystem>();
         healthUpdatedEventArchetype = EntityManager.CreateArchetype(typeof(HealthUpdatedEvent));
     }
 
     protected override void OnUpdate()
     {
         var ecb = ecbSystem.CreateCommandBuffer().AsParallelWriter();
-        var health = GetComponentDataFromEntity<HealthData>();
+        var health = GetComponentLookup<HealthData>();
         var archetypeCopy = healthUpdatedEventArchetype;
-        var time = Time.DeltaTime;
+        var time = World.Time.DeltaTime;
 
         Entities
             .WithReadOnly(health)

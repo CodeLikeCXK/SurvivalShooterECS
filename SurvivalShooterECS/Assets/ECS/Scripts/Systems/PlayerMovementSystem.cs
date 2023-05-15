@@ -7,7 +7,7 @@ public partial class PlayerMovementSystem : SystemBase
     protected override void OnUpdate()
     {
         var speed = SurvivalShooterBootstrap.Settings.PlayerMoveSpeed;
-        var dt = Time.DeltaTime;
+        var dt = World.Time.DeltaTime;
 
         Entities.WithoutBurst().WithNone<DeadData>().ForEach(
             (Entity entity, Rigidbody rigidBody, in PlayerInputData input) =>

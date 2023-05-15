@@ -19,7 +19,7 @@ public partial class PlayerInputSystem : SystemBase
 
     protected override void OnCreate()
     {
-        ecbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        ecbSystem = World.GetOrCreateSystemManaged<EndSimulationEntityCommandBufferSystem>();
     }
 
     protected override void OnStartRunning()

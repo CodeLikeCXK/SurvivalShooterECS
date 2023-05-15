@@ -2,18 +2,21 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerObject : MonoBehaviour, IConvertGameObjectToEntity
+public class PlayerObject : MonoBehaviour
 {
     public Transform GunPivot;
-    public Entity Entity;
-
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    public Entity entity;
+    
+    public class PlayerObjectBaker : Baker<PlayerObject>
     {
-        var settings = SurvivalShooterBootstrap.Settings;
-        dstManager.AddComponentData(entity, new PlayerData());
-        dstManager.AddComponentData(entity, new HealthData { Value = settings.StartingPlayerHealth });
-        dstManager.AddComponentData(entity, new PlayerInputData { Move = new float2(0, 0) });
-
-        Entity = entity;
+        public override void Bake(PlayerObject entity)
+        {
+            var settings = SurvivalShooterBootstrap.Settings;
+            AddComponent(new PlayerData());
+            AddComponent(new HealthData { Value = settings.StartingPlayerHealth });
+            AddComponent(new PlayerInputData { Move = new float2(0, 0) });
+        }
     }
 }
+
+
